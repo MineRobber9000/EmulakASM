@@ -1,0 +1,23 @@
+A .asm file intended for EmulakASM should start with an org directive. Directives are used to tell EmulakASM specifics about
+your code, such as where it needs to be located. Unlike most assemblers, where an object file is generated per-file, in EmulakASM,
+we generate object files per-section. Start a new section with the section directive followed by an org directive, like so:
+
+.section "Main"
+.org $0000
+
+The combination of those 2 directives will put the section "Main" at $0000 in the finished ROM. However, in this example:
+
+.section "Lib Functions"
+.org $0100
+
+The combination of those 2 directives will put the section "Lib Functions" at $0100 in the finished ROM.
+ROMS have a size limit, namely, $2000 bytes.
+
+(Character break: Maybe I'll implement banking and add another $2000 to it, but who needs that much room?)
+
+Other directives include:
+
+.orgsection <name> <address>
+	Syntactic sugar; equivalent to the section and org combo above.
+
+---- (Character break: more in future)
